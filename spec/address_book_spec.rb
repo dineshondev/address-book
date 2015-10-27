@@ -44,6 +44,7 @@ RSpec.describe AddressBook do
       book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
       book.add_entry('Linda Lovelace', '001.100.1010', 'linda.lovelace@lovelace.com')
 
+      expect(book.entries.size).to eq 2
       book.remove_entry(book.entries[1].name, book.entries[1].phone_number, book.entries[1].email)
       expect(book.entries.size).to eq 1
     end
@@ -52,7 +53,8 @@ RSpec.describe AddressBook do
       book = AddressBook.new
       book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
       book.add_entry('Linda Lovelace', '001.100.1010', 'linda.lovelace@lovelace.com')
-
+      
+      expect(book.entries.size).to eq 2
       book.remove_entry(book.entries[1].name, nil, nil)
       expect(book.entries.size).to eq 1
     end
@@ -62,6 +64,7 @@ RSpec.describe AddressBook do
       book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
       book.add_entry('Linda Lovelace', '001.100.1010', 'linda.lovelace@lovelace.com')
 
+      expect(book.entries.size).to eq 2
       book.remove_entry(nil, nil, book.entries[1].email)
       expect(book.entries.size).to eq 1
     end
@@ -71,6 +74,7 @@ RSpec.describe AddressBook do
       book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
       book.add_entry('Linda Lovelace', '001.100.1010', 'linda.lovelace@lovelace.com')
 
+      expect(book.entries.size).to eq 2
       book.remove_entry(nil, book.entries[1].phone_number, nil)
       expect(book.entries.size).to eq 1
     end
