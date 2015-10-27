@@ -15,6 +15,7 @@ class MenuController
     puts "3 - Search for an entry"
     puts "4 - Import entries from CSV"
     puts "5 - Exit"
+    puts "6 - View by number"
     print "Enter your selection: "
 
     selection = gets.to_i
@@ -45,6 +46,11 @@ class MenuController
       puts "Good-bye!"
       exit(0)
 
+    when 6
+      system "clear"
+      view_by_number
+      main_menu
+
     else
       system "clear"
       puts "Sorry, that is not a valid input"
@@ -58,8 +64,31 @@ class MenuController
       puts entry.to_s
       entry_submenu(entry)
     end
-
     system "clear"
+    puts "End of entries"
+  end
+
+  def view_by_number
+    puts "Enter the number"
+    number_input = gets.chomp
+
+    has_entry = false
+    found_entry = nil
+    @address_book.entries.each do |entry|
+      system "clear"
+      if entry.phone_number == number_input
+        has_entry = true
+        found_entry = entry
+      end
+    end
+
+    if has_entry
+      puts found_entry.to_s
+      entry_submenu(found_entry)
+    else
+      system "clear"
+      puts "#{number_input} is not a valid number"
+    end
     puts "End of entries"
   end
 
