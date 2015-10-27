@@ -18,4 +18,21 @@ class AddressBook
     @entries.insert(index, Entry.new(name, phone, email))
   end
 
+  def remove_entry(name, phone, email)
+    @entries.each do |entry|
+      unless email.nil? or entry.email == email
+        @entries.delete(entry)
+        break
+      end
+      unless name.nil? or entry.name == name
+        @entries.delete(entry)
+        break
+      end
+      unless phone.nil? or entry.phone_number == phone
+        @entries.delete(entry)
+        break
+      end
+    end
+  end
+
 end
