@@ -15,12 +15,18 @@ class MenuController
     puts "3 - Search for an entry"
     puts "4 - Import entries from CSV"
     puts "5 - Exit"
+    puts "0 - Nuke"
     print "Enter your selection: "
 
     selection = gets.to_i
     #puts "You picked #{selection}"
 
     case selection
+    when 0
+      system "clear"
+      nuke_entries
+      main_menu
+
     when 1
       system "clear"
       view_all_entries
@@ -172,6 +178,11 @@ class MenuController
   def delete_entry(entry)
     @address_book.entries.delete(entry)
     puts "#{entry.name} has been deleted"
+  end
+
+  def nuke_entries
+    @address_book.entries.clear
+    puts "Your just nuked your data!"
   end
 
   def edit_entry(entry)
